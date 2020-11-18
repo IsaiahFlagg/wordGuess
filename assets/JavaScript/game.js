@@ -7,11 +7,27 @@ let word = ['COLLEGE', 'STRESS', 'EXAMS', 'WORK', 'BROKE'];
 let wins = 0;
 let losses = 0;
 let guesses = 10;
+let char = {
+    char1 : "_",
+    char2 : "_",
+    char3 : "_",
+    char4 : "_",
+    char5 : "_",
+    char6 : "_",
+    char7 : "_",
+    char8 : "_",
+    char9 : "_",
+    char10 : "_",
+}
 // let answer = '';
 
 
 
 let answer = word[Math.floor(Math.random() * word.length)] //choosing a random index in the array 'word' and settings its value equal to answer
+if (answer === word[0]) {
+ let blankAns = char.char1
+ document.getElementById("correct").innerHTML = blankAns
+}
 
 document.onkeyup = function (event) {
     console.log(answer + " answer");
