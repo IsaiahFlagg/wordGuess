@@ -6,27 +6,24 @@ let displayAnswer = [];
 let word = ['COLLEGE', 'STRESS', 'EXAMS', 'WORK', 'BROKE'];
 let wins = 0;
 let losses = 0;
-let guesses = 10;
-let char = {
-    char1 : "_",
-    char2 : "_",
-    char3 : "_",
-    char4 : "_",
-    char5 : "_",
-    char6 : "_",
-    char7 : "_",
-    char8 : "_",
-    char9 : "_",
-    char10 : "_",
-}
+let guesses = 20;
+let underscore = []
+
 // let answer = '';
 
 
 
-let answer = word[Math.floor(Math.random() * word.length)] //choosing a random index in the array 'word' and settings its value equal to answer
-if (answer === word[0]) {
- let blankAns = char.char1
- document.getElementById("correct").innerHTML = blankAns
+ let answer = word[Math.floor(Math.random() * word.length)] //choosing a random index in the array 'word' and settings its value equal to answer
+for (i = 0; i < answer.length; i++) {
+    underscore.push("_")
+    underscore.toString()
+    
+    let div = document.getElementById("correct")
+    div.textContent = (underscore)
+    
+    console.log(underscore);
+    
+    
 }
 
 document.onkeyup = function (event) {
@@ -47,43 +44,57 @@ document.onkeyup = function (event) {
     function keyCheck(arg) {
         for (let i = 0; i < arg.length; i++) {
             if (keyPressed === arg.charAt(i)) {
-                displayAnswer.push(keyPressed) //pushes the value of keyPressed variable into the array
-                correctGuesses.textContent = displayAnswer
+                
+                // console.log(underscore + "this");
+                
+                underscore[i] = keyPressed
+                correctGuesses.textContent = underscore
+                String(answer)
+                let split = answer.split("")
+                console.log(split); //shows the answer split into an array
+                console.log(underscore); // shows the underscore array
+                console.log(answer.length); // shows how many characters are in the answer
+
+                if (underscore.length === answer.length && split.length === answer.length) { //does heck all yet...
+                    wins++
+                }
                 
             }
-
-            
             
 
-            
-            let html = "<h2>Wins: " + wins + "<br> Losses: " + losses + "<br> Remaining Guesses: " + guesses +  "</h2>" //code used to change the html for the scoreboard
-            
-
-            document.getElementById("win/loss").innerHTML = html;
 
 
-            
+
+            let html = "<h2>Wins: " + wins + "<br> Losses: " + losses + "<br> Remaining Guesses: " + guesses + "</h2>" //code used to change the html for the scoreboard
+
+
+            document.getElementById("winloss").innerHTML = html;
+
+
+
         }
-        
-            // if (allUserGuesses === ){
-            //     location.reload()
-            //     alert("You Got It!")
-            // }
-        
-        
-        
-        
-        
-        
+
+       
+
+
+
+
+
+
     };
+
     
+
+   
+
     guesses--;
     if (guesses === 0) {
         location.reload()
+        losses++;
         alert("game over")
     }
     // keyCheck(word)
     keyCheck(answer)
     console.log(guesses);
-    
+
 }
